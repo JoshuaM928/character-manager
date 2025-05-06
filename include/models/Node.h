@@ -1,6 +1,6 @@
 #ifndef NODE_H
 #define NODE_H
-#include <string>
+#include "Actor.h"
 
 class Node {
     public:
@@ -15,11 +15,12 @@ class Node {
         // Setters
             void setData(Actor *data);
             void setNext(Node *next);
-            void sePrev(Node *prev);
+            void setPrev(Node *prev);
     private:
-        Actor *data;
-        Node *next;
-        Node *prev; 
-}
+        // Members
+            Actor *data;
+            Node *next;
+            Node *prev; 
+};
 
 #endif
