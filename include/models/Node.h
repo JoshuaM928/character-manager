@@ -23,4 +23,5 @@ class Node {
             Node *prev; 
 };
 
+bool operator==(Node *rhs); // rhs is "right hand side" abbreviated
 #endif

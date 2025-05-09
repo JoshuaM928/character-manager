@@ -45,3 +45,12 @@
     void Node::setPrev(Node *prev) {
         this->prev = prev;
     }
+
+// Operator overloads
+    bool operator==(Node *rhs) { // rhs is "right hand side" abbreviated
+        if (this->getData() == (*rhs).getData()) { 
+            return true;
+        } else {
+            return false;
+        }
+    }
