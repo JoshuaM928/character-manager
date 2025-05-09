@@ -47,8 +47,9 @@
     }
 
 // Operator overloads
-    bool operator==(Node *rhs) { // rhs is "right hand side" abbreviated
-        if (this->getData() == (*rhs).getData()) { 
+    // lhs is "left hand side" abbreviated
+    bool operator==(Node *lhs, Node *rhs) {
+        if ((*lhs).getData() == (*rhs).getData()) { 
             return true;
         } else {
             return false;
