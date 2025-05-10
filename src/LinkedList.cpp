@@ -5,17 +5,36 @@
         // Intentionally left blank
     }
 
+//Since this is the copy for the Linked List,  it  should be copying the entire list, not just the head and tail node.
     LinkedList::LinkedList(const LinkedList &other) {
         this->size = other.getSize(); 
+        
+        //Empty List check
+        if (other.getHead() == nullptr) {
+            this->head = this->tail = nullptr;
+            return;
+        }
+
         this->head = new Node((*other.getHead()).getData());
-        this->tail = new Node((*other.getTail()).getData());
+        Node* current = this->head;
+        Node* nextCurrent = other.getHead()->getNext();
+
+        while (nextCurrent != nullptr) {
+            Node* copiedNode = new Node((*newCurrent->getData());
+            current->setNext(copiedNode);
+            copiedNode->setPrev(current);
+            nextCurrent = nextCurrent->getNext();
+        }
+        this->tail = current;
     } 
 
     LinkedList::~LinkedList() {
-        delete head;
-        this->setHead(nullptr);
-        delete tail;
-        this->setTail(nullptr);
+        Node* current = head;
+        while (current != nullptr) {
+            Node* next = current->getNext();
+            delete current;
+            current = next;
+        }
     }
 
 // Getters
@@ -35,13 +54,13 @@
     void LinkedList::setSize(const int newSize) {
         this->size = newSize;
     }
-
+//I don't think this should be creating a new Node. Creating new Nodes and adding them to the List should happen in Node    
     void LinkedList::setHead(Node *newHead) {
-        this->head = new Node((*newHead).getData());
+        this->head = newHead;
     }
 
     void LinkedList::setTail(Node *newTail) {
-        this->tail = new Node((*newTail).getData());
+        this->tail = newTail;
     }
 
 // Actions

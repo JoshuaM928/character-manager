@@ -11,12 +11,11 @@
             // intentially left blank
         }
 
+ //Should only delete the current Node, if we delete the nodes around it  we might delete something we dont want to
     Node::~Node() {
         delete data;
         this->setData(nullptr);
-        delete next;
         this->setNext(nullptr);
-        delete prev;
         this->setPrev(nullptr);
     }
 
