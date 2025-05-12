@@ -1,5 +1,11 @@
+#include "../include/CharacterManager.h"
+#include "../include/models/LinkedList.h"
 #include "../include/models/Node.h"
+#include "../include/models/Actor.h"
+#include "../include/CharacterCreationHandeler.h"
+
 #include <iostream>
+#include <cassert>
 
 // Test default constructor
     void createEmptyNode() {
@@ -38,3 +44,26 @@
         }
     }
 
+
+    void testNode()
+    {
+        cout << "Testing Node basic functions...\n";
+        
+        Actor* actor1 = new Actor();
+        actor1->setName("NodeTest1");
+        Actor* actor2 = new Actor();
+        actor2->setName("NodeTest2");
+
+        // Testing constructor and getters
+        Node node1(actor1);
+        assert(node1.getData() == actor1);
+        assert(node1.getNext() == nullptr);
+        assert(node1.getPrev() == nullptr);
+
+        // Test setters
+        Node node2(actor2);
+        node1.setNext(&node2);
+        node2.setPrev(&node1);
+        assert(node1.getNext() == &node2);
+        assert(node2.getPrev() == &node1);
+    }
