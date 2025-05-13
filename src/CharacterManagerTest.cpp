@@ -5,6 +5,7 @@
 #include "../include/CharacterCreationHandeler.h"
 
 #include <iostream>
+#include <cassert>
 
 void testCharacterManager() {
     std::cout << "Testing CharacterManager...\n";

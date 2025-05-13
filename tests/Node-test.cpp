@@ -66,4 +66,7 @@
         node2.setPrev(&node1);
         assert(node1.getNext() == &node2);
         assert(node2.getPrev() == &node1);
+
+        delete actor1;
+        delete actor2;
     }

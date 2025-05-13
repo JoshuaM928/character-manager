@@ -15,7 +15,7 @@ void testCharacterCreationHandler()
 	LinkedList list;
 
 	// Test createCharacter
-    createCharacter(list, "TestChar1", true, false, false, true);
+    CharacterCreationHandeler::createCharacter(list, "TestChar1", true, false, false, true);
     assert(list.getSize() == 1);
     assert(list.getHead() != nullptr);
     assert(list.getHead()->getData()->getName() == "TestChar1");
@@ -23,11 +23,11 @@ void testCharacterCreationHandler()
     assert(list.getHead()->getData()->isHostile());
 
     // Test SearchForCharacter
-    Node* found = SearchForCharacter(list, "TestChar1");
+    Node* found = CharacterCreationHandeler::SearchForCharacter(list, "TestChar1");
     assert(found != nullptr);
     assert(found->getData()->getName() == "TestChar1");
 
-    Node* notFound = SearchForCharacter(list, "NonExistent");
+    Node* notFound = CharacterCreationHandeler::SearchForCharacter(list, "NonExistent");
     assert(notFound == nullptr);
 
     // Test removeCharacter

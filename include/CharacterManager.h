@@ -9,10 +9,11 @@ public:
 	CharacterManager();
 	void run();
 
-private:
-	LinkedList characterList;
 	void displayMenu();
 	void handleUserInput(int choice);
+
+private:
+	LinkedList characterList;
 };
 
 #endif
