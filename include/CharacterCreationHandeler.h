@@ -8,18 +8,18 @@
 class CharacterCreationHandeler {
 public:
     // Creates a new character and adds it to the list
-    void createCharacter(LinkedList& list, const std::string& name,
+    static void createCharacter(LinkedList& list, const std::string& name,
         bool isPlayer, bool isAlly,
         bool isNeutral, bool isHostile);
 
     // Removes a character by name from the list
-    bool removeCharacter(LinkedList& list, const std::string& name);
+    static bool removeCharacter(LinkedList& list, const std::string& name);
 
     // Displays all characters in the list
-    void displayCharacters(const LinkedList& list);
+    static void displayCharacters(const LinkedList& list);
 
     //Searches for a character in the list by name
-    Node* SearchForCharacter(const LinkedList& list, const std::string& name);
+    static Node* SearchForCharacter(const LinkedList& list, const std::string& name);
 };
 
 #endif

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void CharacterCreationHandeler::createCharacter(LinkedList& list, const string& name, bool isPlayer, bool isAlly, bool isNeutral, bool isHostile);
+void CharacterCreationHandeler::createCharacter(LinkedList& list, const string& name, bool isPlayer, bool isAlly, bool isNeutral, bool isHostile)
 {
     // Create new Actor
     Actor* newActor = new Actor();

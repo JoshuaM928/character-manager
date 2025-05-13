@@ -43,4 +43,6 @@ void testLinkedList()
 	assert(list2.getHead()->getData()->getName() == list.getHead()->getData()->getName());
 
 	cout << "LinkedList tests passed!\n";
+	delete actor1;
+	delete node1;
 }

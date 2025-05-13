@@ -1,4 +1,6 @@
 #include "../include/models/LinkedList.h"
+#include <iostream>
+#include <string>
 
 // Default constructor, copy constructor, & deconstructor
     LinkedList::LinkedList() : size(0), head(nullptr), tail(nullptr) {
@@ -15,14 +17,16 @@
             return;
         }
 
-        this->head = new Node((*other.getHead()).getData());
+        this->head = new Node(new Actor(*other.getHead()->getData()));
         Node* current = this->head;
         Node* nextCurrent = other.getHead()->getNext();
 
         while (nextCurrent != nullptr) {
-            Node* copiedNode = new Node((*newCurrent->getData());
+            Node* copiedNode =  new Node(new Actor(*nextCurrent->getData()));
+
             current->setNext(copiedNode);
             copiedNode->setPrev(current);
+            current = current->getNext(); 
             nextCurrent = nextCurrent->getNext();
         }
         this->tail = current;

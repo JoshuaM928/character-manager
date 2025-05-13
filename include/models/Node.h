@@ -23,6 +23,7 @@ class Node {
             Node *prev; 
 };
 
-bool operator==(Node *lhs, Node *rhs); // lhs is "left hand side" 
+/*bool operator==(Node *lhs, Node *rhs); // lhs is "left hand side" 
                                     // abbreviated
+*/
 #endif
