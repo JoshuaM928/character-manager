@@ -44,13 +44,3 @@
     void Node::setPrev(Node *prev) {
         this->prev = prev;
     }
-
-// Operator overloads
-    // lhs is "left hand side" abbreviated
-    bool operator==(Node *lhs, Node *rhs) {
-        if ((*lhs).getData() == (*rhs).getData()) { 
-            return true;
-        } else {
-            return false;
-        }
-    }

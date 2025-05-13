@@ -20,7 +20,7 @@
         Node* nextCurrent = other.getHead()->getNext();
 
         while (nextCurrent != nullptr) {
-            Node* copiedNode = new Node((*newCurrent->getData());
+            Node* copiedNode = new Node(nextCurrent->getData());
             current->setNext(copiedNode);
             copiedNode->setPrev(current);
             nextCurrent = nextCurrent->getNext();

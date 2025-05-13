@@ -14,10 +14,10 @@
 
         if ((*myNode).getData() == nullptr) {
             std::cout << "Node's data is: 'nullptr' \n"
-            << "as expected!" << endl;
+            << "as expected!" << std::endl;
         } else {
             std::cout << "Node's data was NOT: 'nullptr' \n"
-            << "as expected!" << endl;
+            << "as expected!" << std::endl;
         }
     }
 
@@ -29,25 +29,25 @@
 
         // Checks if node was created or not
         if (myNode != nullptr) {
-            std::cout << "'myNode' was successfully created!" << endl;
+            std::cout << "'myNode' was successfully created!" << std::endl;
         } else {
-            std::cout << "'myNode' was NOT successfully created!" << endl;
+            std::cout << "'myNode' was NOT successfully created!" << std::endl;
         }
 
         // Checks if the data was created with the data set to 'myActor'
         if ((*myNode).getData() == myActor) {
             std::cout << "'myNode' was created with data set to "
-            << "'myActor'" << endl;
+            << "'myActor'" << std::endl;
         } else {
             std::cout << "'myNode' was NOT created with data set to " 
-            << "'myActor'" << endl;
+            << "'myActor'" << std::endl;
         }
     }
 
 
     void testNode()
     {
-        cout << "Testing Node basic functions...\n";
+        std::cout << "Testing Node basic functions...\n";
         
         Actor* actor1 = new Actor();
         actor1->setName("NodeTest1");

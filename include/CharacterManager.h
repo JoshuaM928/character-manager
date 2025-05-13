@@ -14,3 +14,5 @@ private:
 	void displayMenu();
 	void handleUserInput(int choice);
 };
+
+#endif

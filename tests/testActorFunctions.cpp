@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void testActor
+void testActor()
 {
     std::cout << "Testing Actor basic functions...\n";
     Actor actor;

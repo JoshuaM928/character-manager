@@ -1,11 +1,17 @@
 #include "../include/CharacterManager.h"
+#include "../include/models/LinkedList.h"
+#include "../include/models/Node.h"
+#include "../include/models/Actor.h"
+#include "../include/CharacterCreationHandeler.h"
+
+#include <iostream>
 
 void testCharacterManager() {
     std::cout << "Testing CharacterManager...\n";
     CharacterManager manager;
 
 
-    // Test displayMenu - would normally capture output, but for simplicity just call it
+    // Test displayMenu 
     manager.displayMenu();
 
     // Test handleUserInput with various cases

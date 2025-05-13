@@ -1,4 +1,4 @@
-#include "../include/CharacterManager.h"
+#include "include/CharacterManager.h"
 
 int main() {
     CharacterManager manager;
