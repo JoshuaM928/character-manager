@@ -1,0 +1,25 @@
+Gandalf
+P
+Legolas
+A
+Sauron
+H
+Bilbo
+N
+Aragorn
+P
+Gimli
+A
+Saruman
+H
+Frodo
+N
+Galadriel
+P
+Thranduil
+A
+Witch-king
+H
+Tom Bombadil
+NKyo
+P
