@@ -8,13 +8,14 @@ enum MyEnum
     ADD = 1,
     REMOVE = 2,
     LIST = 3,
-    SEARCH = 4,
+    COUNT = 4,
+    SEARCH = 5,
     EXIT = 0
 };
 
 using namespace std;
 
-CharacterManager::CharacterManager() 
+CharacterManager::CharacterManager() :characterCount(0)
 {
     //loads the character.txt (this->getFileName() is in .h)
     loadCharactersFromFile();
@@ -37,13 +38,13 @@ void CharacterManager::displayMenu()
     cout << "1. Add Character\n";
     cout << "2. Remove Character\n";
     cout << "3. List Characters\n";
-    cout << "4. Search Character\n";
+    cout << "4. Get Character Count\n";
+    cout << "5. Search Character\n";
     cout << "0. Exit\n";
     cout << "Enter your choice: ";
 }
 
-void CharacterManager::handleUserInput(int choice) 
-{
+void CharacterManager::handleUserInput(int choice) {
     switch (choice) {
     case ADD: {
 
@@ -161,6 +162,10 @@ void CharacterManager::handleUserInput(int choice)
         }
         break;
     }
+    case COUNT: {
+        cout << this->getCharacterCount();
+        break;
+    }
     case SEARCH: 
     {
         string name;
@@ -215,6 +220,7 @@ void CharacterManager::loadCharactersFromFile()
         CharacterCreationHandeler::createCharacter(
             characterList, name, isPlayer, isAlly, isNeutral, isHostile
         );
+        this->incrementCount();
     }
     file.close();
 }
@@ -255,6 +261,7 @@ void CharacterManager::addCharacterToFile(Node* newNode) {
         
         file << type << "\n";
         file.close();
+        this->incrementCount();
     }
 }
 
@@ -285,6 +292,7 @@ void CharacterManager::removeCharacterFromFile(Node* nodeToRemove) {
     if (found) {
         remove(this->getFileName().c_str());
         rename("temp.txt", this->getFileName().c_str());
+        this->decrementCount();
     } else {
         remove("temp.txt"); // Delete temp file if no changes made
     }
@@ -292,4 +300,16 @@ void CharacterManager::removeCharacterFromFile(Node* nodeToRemove) {
 
 std::string CharacterManager::getFileName() const {
     return this->fileName;
+}
+
+int CharacterManager::getCharacterCount() const {
+    return this->characterCount;
+}
+
+void CharacterManager::incrementCount() {
+    ++this->characterCount;
+}
+
+void CharacterManager::decrementCount() {
+    --this->characterCount;
 }

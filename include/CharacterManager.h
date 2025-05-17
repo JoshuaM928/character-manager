@@ -17,9 +17,11 @@ public:
 	void displayMenu();
 	void handleUserInput(int choice);
 	std::string getFileName() const;
+	int getCharacterCount() const;
 	
-
 private:
+	void incrementCount();
+	void decrementCount();
 	LinkedList characterList;
 	const std::string fileName = "characters.txt";
 	int characterCount;
