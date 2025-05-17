@@ -16,7 +16,7 @@ using namespace std;
 
 CharacterManager::CharacterManager() 
 {
-    //loads the character.txt (filename is in .h)
+    //loads the character.txt (this->getFileName() is in .h)
     loadCharactersFromFile();
 }
 
@@ -199,7 +199,7 @@ void CharacterManager::handleUserInput(int choice)
 
 void CharacterManager::loadCharactersFromFile() 
 {
-    ifstream file(filename);
+    ifstream file(this->getFileName());
     if (!file.is_open()) return;  // No file exists yet
 
     string name, typeStr;
@@ -221,7 +221,7 @@ void CharacterManager::loadCharactersFromFile()
 
 void CharacterManager::saveCharactersToFile() 
 {
-    ofstream file(filename);
+    ofstream file(this->getFileName());
     Node* current = characterList.getHead();
 
     while (current != nullptr) {
@@ -242,7 +242,7 @@ void CharacterManager::saveCharactersToFile()
 }
 
 void CharacterManager::addCharacterToFile(Node* newNode) {
-    ofstream file(filename, ios::app);//the ios::app is something i found when looking up how to do this, cause otherwise the text in the file gets deleted
+    ofstream file(this->getFileName(), ios::app);//the ios::app is something i found when looking up how to do this, cause otherwise the text in the file gets deleted
     if (file.is_open()) {
         Actor* actor = newNode->getData();
         file << actor->getName() << "\n";
@@ -259,7 +259,7 @@ void CharacterManager::addCharacterToFile(Node* newNode) {
 }
 
 void CharacterManager::removeCharacterFromFile(Node* nodeToRemove) {
-    ifstream inFile(filename);
+    ifstream inFile(this->getFileName());
     ofstream tempFile("temp.txt");
     string currentName;
     string currentType;
@@ -283,9 +283,13 @@ void CharacterManager::removeCharacterFromFile(Node* nodeToRemove) {
     tempFile.close();
     
     if (found) {
-        remove(filename.c_str());
-        rename("temp.txt", filename.c_str());
+        remove(this->getFileName().c_str());
+        rename("temp.txt", this->getFileName().c_str());
     } else {
         remove("temp.txt"); // Delete temp file if no changes made
     }
+}
+
+std::string CharacterManager::getFileName() const {
+    return this->fileName;
 }

@@ -16,11 +16,13 @@ public:
 
 	void displayMenu();
 	void handleUserInput(int choice);
+	std::string getFileName() const;
 	
 
 private:
 	LinkedList characterList;
-	 const std::string filename = "characters.txt";
+	const std::string fileName = "characters.txt";
+	int characterCount;
 };
 
 #endif
