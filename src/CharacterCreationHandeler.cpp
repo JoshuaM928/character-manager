@@ -3,7 +3,8 @@
 
 using namespace std;
 
-void CharacterCreationHandeler::createCharacter(LinkedList& list, const string& name, bool isPlayer, bool isAlly, bool isNeutral, bool isHostile)
+void CharacterCreationHandeler::createCharacter(LinkedList& list, const string& name, bool isPlayer,
+     bool isAlly, bool isNeutral, bool isHostile, const double x, const double y, const double z)
 {
     // Create new Actor
     Actor* newActor = new Actor();
@@ -12,7 +13,7 @@ void CharacterCreationHandeler::createCharacter(LinkedList& list, const string& 
     newActor->setAlly(isAlly);
     newActor->setNeutral(isNeutral);
     newActor->setHostile(isHostile);
-
+    newActor->setPos(x,y,z);
     // Create new Node with the Actor
     Node* newNode = new Node(newActor);
 
@@ -69,6 +70,7 @@ bool CharacterCreationHandeler::removeCharacter(LinkedList& list, const string& 
         }
         delete current;
         list.setSize(list.getSize() - 1);
+        
         return true;
     }
     return false; // Character not found

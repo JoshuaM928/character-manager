@@ -20,6 +20,9 @@
         double Actor::getHp() const {
             return this->hp;
         }
+        std::vector<double>& Actor::getPos() {
+            return this->pos;
+        }
 
 // Predicates
         bool Actor::isPlayer() const {
@@ -57,5 +60,11 @@
 
         void Actor::setHostile(const bool isHostile) {
             this->hostile = isHostile;
+        }
+
+        void Actor::setPos(const double x, const double y, const double z) {
+            this->pos.at(0) = x;
+            this->pos.at(1) = y;
+            this->pos.at(2) = z;
         }
 

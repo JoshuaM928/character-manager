@@ -10,7 +10,7 @@ public:
     // Creates a new character and adds it to the list
     static void createCharacter(LinkedList& list, const std::string& name,
         bool isPlayer, bool isAlly,
-        bool isNeutral, bool isHostile);
+        bool isNeutral, bool isHostile, const double x, const double y, const double z);
 
     // Removes a character by name from the list
     static bool removeCharacter(LinkedList& list, const std::string& name);

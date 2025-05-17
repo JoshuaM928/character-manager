@@ -2,6 +2,7 @@
 #include "../include/CharacterCreationHandeler.h"
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 enum MyEnum
 {
@@ -10,6 +11,7 @@ enum MyEnum
     LIST = 3,
     COUNT = 4,
     SEARCH = 5,
+    POSITION = 6,
     EXIT = 0
 };
 
@@ -40,6 +42,7 @@ void CharacterManager::displayMenu()
     cout << "3. List Characters\n";
     cout << "4. Get Character Count\n";
     cout << "5. Search Character\n";
+    cout << "6. Get Character Position\n";
     cout << "0. Exit\n";
     cout << "Enter your choice: ";
 }
@@ -50,6 +53,7 @@ void CharacterManager::handleUserInput(int choice) {
 
         string name; 
         char type;
+        double x = 0.0 ,y = 0.0 ,z = 0.0;
 
         cout << "Enter Character Name: ";
         while (name.empty()) 
@@ -104,7 +108,8 @@ void CharacterManager::handleUserInput(int choice) {
         default: isNeutral = true;
         }
 
-        CharacterCreationHandeler::createCharacter(characterList, name, isPlayer, isAlly, isNeutral, isHostile);
+        CharacterCreationHandeler::createCharacter(characterList, name, isPlayer, isAlly, isNeutral, isHostile,
+            x, y, z);
         
         Node* newNode = CharacterCreationHandeler::SearchForCharacter(characterList, name);
         if (newNode) 
@@ -191,6 +196,31 @@ void CharacterManager::handleUserInput(int choice) {
         }
         break;
     }
+    case POSITION: {
+        string name;
+        cout << "Enter character name to search: ";
+        getline(cin, name);
+    
+        Node* found = CharacterCreationHandeler::SearchForCharacter(characterList, name);
+        if (found) {
+            Actor* actor = found->getData();
+            std::vector<double> vec = actor->getPos();
+            std::cout << "(";
+            for (size_t i = 0; i < vec.size(); ++i) {
+                // always print the element
+                std::cout << vec[i];
+                // but only print a comma+space if it’s _not_ the last
+                if (i + 1 < vec.size()) {
+                    std::cout << ", ";
+                }
+            }
+            std::cout << ")\n";
+
+        } else {
+            std::cout << "Character not found!\n";
+        }
+        break;
+    }
     case EXIT: {
         std::cout << "Exiting...\n";
         break;
@@ -202,13 +232,14 @@ void CharacterManager::handleUserInput(int choice) {
     }
 }
 
-void CharacterManager::loadCharactersFromFile() 
-{
+void CharacterManager::loadCharactersFromFile() {
     ifstream file(this->getFileName());
+    std::ifstream positionsFile("data/positions.txt");
     if (!file.is_open()) return;  // No file exists yet
-
-    string name, typeStr;
+    if (!positionsFile.is_open()) return; // Positions file doesn't exist
+    string name, typeStr, line;
     bool isPlayer, isAlly, isNeutral, isHostile;
+    double x, y, z;
 
     while (getline(file, name)) {
         getline(file, typeStr);
@@ -216,17 +247,26 @@ void CharacterManager::loadCharactersFromFile()
         isAlly = (typeStr.find('A') != string::npos);
         isNeutral = (typeStr.find('N') != string::npos);
         isHostile = (typeStr.find('H') != string::npos);
+        if (std::getline(positionsFile, line)) {
+            std::stringstream ss(line);
+            std::string token;
 
+            if (std::getline(ss, token, ',')) x = std::stod(token);
+            if (std::getline(ss, token, ',')) y = std::stod(token);
+            if (std::getline(ss, token, ',')) z = std::stod(token);
+        } else {
+                // No more position lines left — handle this case if needed
+                x = y = z = 0;  // or throw an error / warning
+            }
         CharacterCreationHandeler::createCharacter(
-            characterList, name, isPlayer, isAlly, isNeutral, isHostile
-        );
+            characterList, name, isPlayer, isAlly, isNeutral, isHostile,
+            x, y, z);
         this->incrementCount();
     }
     file.close();
 }
 
-void CharacterManager::saveCharactersToFile() 
-{
+void CharacterManager::saveCharactersToFile() {
     ofstream file(this->getFileName());
     Node* current = characterList.getHead();
 

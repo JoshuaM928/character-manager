@@ -1,6 +1,7 @@
 #ifndef ACTOR_H
 #define ACTOR_H
 #include <string>
+#include <vector>
 
 class Actor {
     public:
@@ -11,6 +12,7 @@ class Actor {
             std::string getName() const;
             double getXp() const;
             double getHp() const;
+            std::vector<double>& getPos();
 
         // Predicates
             bool isPlayer() const;
@@ -24,6 +26,7 @@ class Actor {
             void setAlly(const bool isAlly);
             void setNeutral(const bool isNeutral);
             void setHostile(const bool isHostile);
+            void setPos(const double x, const double y, const double z);
 
         // Actions
             void gainExp(const double xp);
@@ -40,6 +43,7 @@ class Actor {
             bool ally;
             bool neutral;
             bool hostile;
+            std::vector<double> pos{0.0, 0.0, 0.0}; // pos is 'position' abbreviated
 };
 
 #endif // ACTOR_H
